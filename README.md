@@ -2,6 +2,91 @@
 
 
 
+# Project 2. Wine making yeast
+
+
+In the second project, you will investigate the biological functions of DNA sequences, that is you will try to figure out what are some of the DNA sequences responsible for. Specifically you will look into protein coding genes and their expression levels in a species of yeast. The goal is to determine which genes are active during the degradation of glucose and ethanol.
+
+0. Biological background: 
+
+Saccharomyces cerevisiae is a species of yeast that brews wine by converting the glucose found in fruit into ethanol.
+
+- If the supply of glucose runs out, *S. cerevisiae* must do something to survive
+- It will then invert its metabolism, with the ethanol (alcohol) that it just produced becoming its new food supply.
+- This metabolic inversion, called the diauxic shift, can only occur in the presence of oxygen.
+- Without oxygen, *S. cerevisiae* hibernates until either glucose or oxygen becomes available
+
+
+In conclusion, if winemakers don’t seal their barrels, then the yeast in the barrel will metabolize the ethanol that it just produced, ruining the wine.
+
+The diauxic shift is a complex process that affects the expression of many genes.
+
+
+In 1997, Joseph DeRisi conducted the first massive gene expression experiment by sampling an *S. cerevisiae* culture every two hours for the six hours before and after the diauxic shift. Since there are approximately 6,400 genes in *S. cerevisiae*, and there were seven time points, this experiment resulted in a 6,400 × 7 gene expression matrix.
+
+1. Data: in the github data/diauxic\_raw\_ratios.txt
+
+- Note that it is gene by time point format while in class we mostly discussed gene by cell (sample).
+
+2. Plot the row data as a heatmap
+
+3. Cluster the genes and plot the clustered matrix
+- describe what algorithm you chose, how many clusters you got (big parameter! to pay attention to), calculate the Silhouette score
+- discuss whether you can readily identify a group of genes that changes expression patterns together
+
+4. Remove genes not of interest
+
+While you used all 6,400 genes in your initial analysis, typically, genes that have not changed their expression substantially or are known not play a role in the process being investigated are removed to increase the statistical power of the test. That is why most studies actually focus on a subset of *highly variable genes*. 
+
+- devise and implement your own metric for assessing which genes have changed the most (both up and down direction!)
+- describe it in your pdf explaining why it is reasonable and what pitfalls it may have
+- report the 230 most variable genes according to your metric
+
+
+5. The authors of the study did their own post-processing of the data and selected a set of 230 most variable genes. 
+- Find their set in data/230genes_log_expression.txt
+- what is the overlap with your list, i.e how many of the genes are the same, make sure to report together the Jaccard coefficient as well
+
+
+6. Using the reduced list of 230 genes (derived by the authors) redo your clustering analysis
+- are the groups of genes active at different stages identifiable now
+ 
+
+7. Use the list of genes you identified in the next part:
+
+## Part 2. Evaluation and statistical intuition
+
+Now, you should try to provide further evidence that the genes you identified in part 1 are indeed involved in the diauxic shift of the yeast.
+
+1. Test if your list of genes contains GO terms that are overrepresented using the established GO tool: https://geneontology.org/
+
+- use the second column with gene names (identifiers)
+- make sure to select Saccharomyces cerevisiae as species
+
+
+Let's gain some intuition behind the magic of a p-value. For the sake of the exercise suppose that you have a list of 50 items (genes) and 38 of them are colored by (annotated with) *Green*. Of all possible 6000 items, 4260 or 71% are colored with *Green*.
+
+2. Calculate the probability that your list of items (genes) has more *Green* genes than expected by chance
+
+2. 1 I'd suggest to run a simulation, where you randomly draw 50 genes out of all 6000 possible genes and count how many *Green* genes you have. Repeat **X** number of times to estimate the probability (write a convincing argument for the value of **X** you chose, see 2.2 below)
+
+2. 2 How many simulations (**X**) do you need to run to be certain (define certain) of the probability
+- you can try plotting the number trials vs the variance or change of the probability in order to see when it stabilizes
+
+*(Bonus)* Recall the binomial models and derive the mathematical formula for the exact probability (i.e it can be computed analytically). Use it to calculate directly the probability? Does it agree with your simulation?
+
+2.3 Is *Green* appearing more frequently than expected? What if there were 35 or 40 *Green* items in the list rather than 38?
+
+2.4 Find a pair of numbers (n,k) such that if n (number of items in the background) and k (number of items in the research list) are annotated with *Purple*, a student working on this problem will calculate a p-value between (0.003 and 0.01) for *Purple*
+
+- you may need to test many pairs and not in uniform ranges to find a suitable pair
+
+2.5 If you test a total of 10 colors, are *Green* and *Purple* significantly overrepresented? 
+
+3. Turn in the pdf (for both parts) and your code via canvas by the *deadline: March 4th, 11:59pm*
+
+
+
 # Project 1. Sequences and Evolutionary Trees
 
 In this first project you will combine what you have learned about aligning sequences, working with substitution matrices, using similarity scores and clustering algorithms to ultimately build an evolutionary tree given orthologous proteins sampled from several strains of bacteria.
