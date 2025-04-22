@@ -83,7 +83,7 @@ Let's gain some intuition behind the magic of a p-value. For the sake of the exe
 
 2.5 If you test a total of 10 colors, are *Green* and *Purple* significantly overrepresented? 
 
-3. Turn in the pdf (for both parts) and your code via canvas by the *deadline: March 4th, 11:59pm*
+3. Turn in the pdf (for both parts) and your code via canvas by the *deadline: May 1st, 11:59pm*
 
 
 
