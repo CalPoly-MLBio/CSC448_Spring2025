@@ -68,7 +68,7 @@ Let's gain some intuition behind the magic of a p-value. For the sake of the exe
 
 2. Calculate the probability that your list of items (genes) has more *Green* genes than expected by chance
 
-2. 1 I'd suggest to run a simulation, where you randomly draw 50 genes out of all 6000 possible genes and count how many *Green* genes you have. Repeat **X** number of times to estimate the probability (write a convincing argument for the value of **X** you chose, see 2.2 below)
+2. 1 I'd suggest to run a simulation, where you randomly draw 50 genes out of all 6000 possible genes and count how many *Green* genes you have. Repeat **X** number of times to estimate the probability (write a convincing argument for the value of **X** you chose, see 4.2 below)
 
 2. 2 How many simulations (**X**) do you need to run to be certain (define certain) of the probability
 - you can try plotting the number trials vs the variance or change of the probability in order to see when it stabilizes
