@@ -34,7 +34,7 @@ In 1997, Joseph DeRisi conducted the first massive gene expression experiment by
 - describe what algorithm you chose, how many clusters you got (big parameter! to pay attention to), calculate the Silhouette score
 - discuss whether you can readily identify a group of genes that changes expression patterns together
 
-4. Remove genes not of interest
+4. Remove genes not of interest (non-varying) 
 
 While you used all 6,400 genes in your initial analysis, typically, genes that have not changed their expression substantially or are known not play a role in the process being investigated are removed to increase the statistical power of the test. That is why most studies actually focus on a subset of *highly variable genes*. 
 
