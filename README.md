@@ -1,6 +1,94 @@
 # CSC 448 - Spring 2025
 
 
+# Project 3: Cancer and Graph Theory
+
+![pic](rw.png)
+
+In this project you will combine two seemingly disparate topics- *Cancer Genomics* and *Graph Theory*. Yet, over the past decade, it was graph algorithms that propel our understanding of how supposedly random mutations may lead to cancer. This project is in part inspired by the seminal study published in *Nature Genomics* in 2015 (you can read the paper [here](https://www.nature.com/articles/ng.3168)) in which the authors proposed a graph diffusion algorithm to investigate rare cancer mutations that drive the tumorigenic process. 
+
+Please, start early, this is a long, complex assignment with several layers of abstraction and significant computational runtime. Hence, I inserted several checkpoints to ensure you stay on track. 
+
+
+
+## 1. The Data
+
+You are given two datasets:
+
+1. **List of interacting proteins.** A pair of proteins that have been experimentally found to bind to one another or participate jointly in the formation of larger molecular complexes within the cell's cytoplasm are listed in data/interacting\_proteins.txt. For example, a line in the file: ```MAPK3 YWHAB``` means that the mitogen-activated protein kinase 3 (MAPK3) interacts with the Tryptophan 5-Monooxygenase (YWHAB). This dataset comes form the The National Center for Biotechnology Information (NCBI) at Bethesda, MD curated database of human interacting proteins which is the result of decades of laboratory work by numerous scientists.
+
+2. **List of cancer-driving mutated genes**. As part of the landmark [The Cancer Genome Atlas](https://www.cancer.gov/ccg/research/genome-sequencing/tcga) study that span over a decade, 341 patients with kidney cancer (Clear Cell Renal Cell Carcinoma) volunteered to have their tumors being biopsied and studied at the Brigham and Women's Hospital in Boston, Massachusetts and The University of Chicago Medical Center, Illinois. Researchers discovered over 12,000 different mutations occurring in nearly 1,000 different genes revealing an incredibly vast landscape of mostly irrelevant mutations (as to be discussed in class, those are the so-called *passenger* mutations) and only a handful (18 in the published study) of the mutated genes are actual *cancer-driver* genes, i.e the ones that are responsible for the initiation and progression of the cancer. In data/onco\_genes.txt I am providing you with seven of those *cancer-driver* genes. Your job is to computationally discover the rest of the *tumorigenic genes*.
+
+## 2. Biological Intuition
+
+The key biological intuition is that tumor-inducing mutations do not affect all genes but only those genes that encode (synthesize) for proteins involved in critical cell functions such as cell growth, cell division and apoptosis. In class, we will discuss that the hallmarks of tumors are precisely these: uncontrolled cell growth, division, and avoidance of cell death. As we already discovered, proteins carrying a given function work together by binding to each other or forming various, larger molecular complexes to accomplish the task. Hence, proteins involved in the same cellular process (i.e cell growth) will have more connections (edges) in the protein interaction graph and will be closer to one another. That is, the key cancer mutations, when mapped onto the graph nodes would be close to one another within the graph structure. 
+
+
+## 3. The Graph
+
+Your first job is to model the protein interactions as a graph in which each node corresponds to a protein, an edge between two nodes indicates that the two proteins are interacting with one another, and the weight on the edge reflects the relative strength of their interaction. How you do this, is up to you- you can implement your own data structure or use an existing Python package. I would recommend either using the *NetworkX* Python library or simply storing the graph as a NumPy adjacency matrix (the latter may simplify and speed up significantly your code).
+
+
+## 3.1 The Shortest Path
+
+Let's start by testing the biological hypothesis that the *tumorigenic genes* are closer to one another in the protein interaction graph using a well-known measure of distance- the shortest path. Calculate the average shortest path between the *tumorigenic genes* and use this single scalar value as a score of network proximity for this set. Next, you would like to evaluate if this score is low, specifically, if it is lower than expected by chance. To do so, compute a background score for sets of *non-tumorigenic genes* (sets of the same size as your original set of *tumorigenic genes*). Calculate the average shortest path between the genes in such sets. Intuitively, it should be much longer than the proteins that are actually involved in the oncogenic process. Build 1000 random sets to establish a background distribution of average shortest paths scores and either confirm or reject the hypothesis that *tumorigenic genes* are closer to one another. Make sure to plot the distribution, calculate a *p-value*, and provide an explanation for the observed result.
+
+**Note**: You can use a Python Scientific Library that implements Dijkstra's algorithm as long as you properly cite it in your report but I will give you extra points if you reuse your own implementation of Dijkstra from CSC 202 and self-cite: *CalPoly CSC 202: own code* :smiley:
+
+
+## 4. Graph Diffusion and Random Walks
+
+Next, let's consider an advanced algorithm to induce a more network topology aware metric. You can implement either Graph Diffusion or Random Walk with Restarts (RWR) algorithm though I would recommend implementing a simulation of the RWR as it is the easiest to code and debug. 
+
+### 4.1 Toy example
+
+1. To start, consider the toy graph from lecture and calculate the stationary frequencies for all nodes if the walk starts from the node in red at the top:
+- use the same weight of 1 on all edges and $\gamma = 0.3$ as fixed restart parameter
+- plot the graph, coloring the nodes in the yellow-red scale with the intensity of the red corresponding to magnitude of the stationary frequencies. (here, Cytoscape, a commonly used software tool for visualizing graphs that has tons of features my come in handy, or feel free to explore various Python packages). You should display the stationary frequencies as a label on each node too.
+- note that I did the coloring in power point for lecture visualization purposes, your solution will tell us precisely what the colors should be :)
+
+![g1](g1.png)
+
+**\*\* Checkpoint 1: turn in your code and first draft of the project report by the deadline: May 18th, 11:59pm**
+
+2. Further test your code to gain intuition on how the algorithm behaves:
+- change the weights on some of the edges. Do you observe changes in the stationary frequencies consistent with the direction in which the weighted edges are likely to be sending the walk to. Discuss in your report
+- vary the restart parameter and confirm it behaves as expected at the extremes (0 and 1). Make visualization with updated colors. 
+- rank the nodes based on their degree, how does this ranking correlate with the stationary distribution ranking of the nodes (especially in the case $\gamma = 1$). Spearman rank correlation test might be helpful here.
+
+
+
+### 4.2 Real Data
+
+Once you have your code streamlined and you are confident it works properly, move to the real data.
+
+Use the random walk with restarts (RWR) algorithm (or diffusion if desired) to calculate an average network proximity measure for the set of known *tumorigenic genes*. Specifically, run a RWR starting from one *tumorigenic node* and calculate the stationary frequencies for all other *tumorigenic gens*. Intuitively, if they are close within the network, these frequencies should be high and, more importantly, higher than the stationary frequencies of nodes not related to *oncogenic processes*. Repeat this for every *tumorigenic node* and calculate the average score. As in 3.1, establish a background rate- draw 1000 times random set of proteins and for each set calculate its network proximity score based on RWR. What does the background distribution look like and how extreme is the *oncogenic nodes* score (*p-value*)? Would you accept or reject the hypothesis that they are much closer in the graph according to the new metric?
+
+*Note:* you may need to run your simulation for many more iterations to converge than in the toy example as the graph is much bigger.
+
+**\*\* Checkpoint 2: turn in your code and updated draft of the project report by the deadline: May 22nd, 11:59pm**
+
+
+### 4.2.3 Predict novel *tumorigenic genes*
+
+Use your proximity scores derived from the RWR to implicate other genes that might be involved in the oncogenic process. Upload your top 30 predicted genes as single gene IDs, each on a new line in file: *FirstName\_LastName\_onco\_predictions.txt*
+
+### 4. Graph Randomization
+
+Finally, to confirm the importance of the graphs structure, randomize the network using the degree preserving edge swapping technique from class. Now that the edges don't represent real interaction between the proteins but link random proteins instead, you shouldn't expect the *tumorigenic nodes* proteins to be in network proximity to one another. Test this intuition. Use the randomized network and repeat the analysis of 4.2. Does the network proximity score for the set of *tumorigenic nodes* differ from that of a random background set?
+
+**\*\* Checkpoint 3: Don't turn anything but aim to be ready with every experiment by May 25th, 11:59pm**
+
+## 5. Submit
+
+Upload your *COMPLETE* (all parts, all experiments, all results) report, the file with your predicted cancer-driving genes and your *COMPLETE* code via canvas by the *FINAL Deadline: May 28th, 11:59pm*.
+
+
+
+&nbsp;
+
+&nbsp;
+
 
 # Project 2. Wine making yeast
 
