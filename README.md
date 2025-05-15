@@ -219,8 +219,9 @@ via canvas by the *deadline: Friday 18th, 11:59pm*
 
 During the first lab, let's make sure your environment is set up so that you can work without problems on the projects. 
 
+![alt text](fun.png)
 
-## 1. Anaconda
+## 1. Anaconda Environment
 
 Anaconda is extremely popular open-source distribution designed for data science, machine learning, bioinformatics and scientific computing, that simplifies package management, environment creation, and deployment, making it easier to install and manage libraries and dependencies for various projects. I strongly recommend installing the full version of Anaconda and using it to encapsulate and manage all of your project dependencies, not just for this class but in general. There is no need to install software or libraries directly on you machine potentially causing conflicts and littering your system. Anaconda takes care of it, creating virtual environments which isolate software and their dependencies from the rest of the software installed on your machine. This means you can have both Python 2.9 and Python 3.7 installed within Anaconda and use both versions without encountering issues while your laptop carries its vanilla factory distribution of Python 3.X. You are not required to install Anaconda, but having it will probably make your life easier.
 
@@ -270,7 +271,7 @@ Don't stress out! I realize you may not be very experienced writing one, I will 
 
 If you use a code from a GitHub of published research, you should include a full reference to the corresponding paper. The GitHub readme page typically contains a citation section that states exactly the name of the paper, the journal, and the year it was published. If you cannot find one then you cannot use it. If in doubt ask me.
 
-## 4. Submission
+## 4. Submitting
 
 For each project, you will upload on canvas two files with the following names: 
 
@@ -278,6 +279,6 @@ For each project, you will upload on canvas two files with the following names:
 - FirstName_LastName.gz which is a gzipped of all your code
 
 
-## 5. Remember to have fun
+## 5. Remember to have fun!
 
-![alt text](fun.png)
+
