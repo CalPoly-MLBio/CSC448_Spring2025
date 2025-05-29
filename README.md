@@ -82,7 +82,7 @@ You are given two datasets:
 
 1. **List of interacting proteins.** A pair of proteins that have been experimentally found to bind to one another or participate jointly in the formation of larger molecular complexes within the cell's cytoplasm are listed in data/interacting\_proteins.txt. For example, a line in the file: ```MAPK3 YWHAB``` means that the mitogen-activated protein kinase 3 (MAPK3) interacts with the Tryptophan 5-Monooxygenase (YWHAB). This dataset comes form the The National Center for Biotechnology Information (NCBI) at Bethesda, MD curated database of human interacting proteins which is the result of decades of laboratory work by numerous scientists.
 
-2. **List of cancer-driving mutated genes**. As part of the landmark [The Cancer Genome Atlas](https://www.cancer.gov/ccg/research/genome-sequencing/tcga) study that span over a decade, 341 patients with kidney cancer (Clear Cell Renal Cell Carcinoma) volunteered to have their tumors being biopsied and studied at the Brigham and Women's Hospital in Boston, Massachusetts and The University of Chicago Medical Center, Illinois. Researchers discovered over 12,000 different mutations occurring in nearly 1,000 different genes revealing an incredibly vast landscape of mostly irrelevant mutations (as to be discussed in class, those are the so-called *passenger* mutations) and only a handful (18 in the published study) of the mutated genes are actual *cancer-driver* genes, i.e the ones that are responsible for the initiation and progression of the cancer. In data/onco\_genes.txt I am providing you with seven of those *cancer-driver* genes. Your job is to computationally discover the rest of the *tumorigenic genes*.
+2. **List of cancer driving mutated genes**. As part of the landmark [The Cancer Genome Atlas](https://www.cancer.gov/ccg/research/genome-sequencing/tcga) study that span over a decade, 341 patients with kidney cancer (Clear Cell Renal Cell Carcinoma) volunteered to have their tumors being biopsied and studied at the Brigham and Women's Hospital in Boston, Massachusetts and The University of Chicago Medical Center, Illinois. Researchers discovered over 12,000 different mutations occurring in nearly 1,000 different genes revealing an incredibly vast landscape of mostly irrelevant mutations (as to be discussed in class, those are the so-called *passenger* mutations) and only a handful (18 in the published study) of the mutated genes are actual *cancer driver* genes, i.e the ones that are responsible for the initiation and progression of the cancer. In data/onco\_genes.txt I am providing you with seven of those *cancer driver* genes. Your job is to computationally discover the rest of the *tumorigenic genes*.
 
 ## 2. Biological Intuition
 
@@ -146,7 +146,7 @@ Finally, to confirm the importance of the graphs structure, randomize the networ
 
 ## 5. Submit
 
-Upload your **COMPLETE** (all parts, all experiments, all results) report, the file with your predicted cancer-driving genes and your **COMPLETE** code via canvas by the *FINAL Deadline: May 28th, 11:59pm*.
+Upload your **COMPLETE** (all parts, all experiments, all results) report, the file with your predicted cancer driving genes and your **COMPLETE** code via canvas by the *FINAL Deadline: May 28th, 11:59pm*.
 
 
 
@@ -276,7 +276,7 @@ The protein sequences are in the **data/protein\_sequences.txt** folder of the g
 
 2. Use your implementation of 1 to align every pair of sequences in the file and:
 - convert the alignment scores from (1) into a **uniform** similarity measure that can be used to compare all sequences to one another. That is, given the scores you should be able to say, sequence\_i is more similar to sequence\_j than it is to sequence\_k. This may involve some form of normalization of the raw Smith–Waterman scores. Think carefully and explain how you did this in your report
-- given your normalized similarity scores for any pair of sequences, construct the similarity matrix (this is the sequence by sequence matrix that is the input to the clustering in step 3)
+- given your normalized similarity scores for any pair of sequences, construct the similarity matrix (this is the sequence by sequence matrix that is the input to the clustering in part 3)
 
 ## 3. Evolutionary Tree
 
@@ -302,6 +302,9 @@ Turn in the following two files:
 via canvas by the *deadline: Friday 18th, 11:59pm*
 
 
+&nbsp;
+
+&nbsp;
 
 
 
