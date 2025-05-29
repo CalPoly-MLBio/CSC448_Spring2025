@@ -57,7 +57,7 @@ Build upon the basic Markov model from part 3 to create a Hidden Markov Model an
 
 Turn in the pdf and your code via canvas by the *deadline: June 9th, 11:59pm*.
 
-${\color{red}\large{\text{Note:}}}$ As I need to grade the project and submit final grades for the course to the registrar, the absolute latest you can submit is: ${\color{red}\large{\text{June 11th, 9am.}}}$ 
+${\color{red}\large{\text{Note:}}}$ As I need to grade the project and submit final grades for the course to the registrar, the absolute latest you can submit is: ${\color{red}\large{\text{June 11th, 10am.}}}$ 
 
 
 
@@ -156,7 +156,7 @@ Upload your *COMPLETE* (all parts, all experiments, all results) report, the fil
 
 
 
-# Project 2. Clustering and Wine Making Yeast
+# Project 2: Clustering and Wine Making Yeast
 
 
 In the second project, you will investigate the biological functions of DNA sequences, that is you will try to figure out what are some of the DNA sequences responsible for. Specifically you will look into protein coding genes and their expression levels in a species of yeast. The goal is to determine which genes are active during the degradation of glucose and ethanol.
@@ -257,11 +257,15 @@ Turn in the pdf (for both parts) and your code via canvas by the *deadline: Marc
 &nbsp;
 
 
-# Project 1. Sequences, Bacteria and Evolutionary Trees
+# Project 1: Sequences, Bacteria and Evolutionary Trees
 
 In this first project you will combine what you have learned about aligning sequences, working with substitution matrices, using similarity scores and clustering algorithms to ultimately build an evolutionary tree given orthologous proteins sampled from several strains of bacteria.
 
-0. The protein sequences are in the data/ folder of the github. Each sequences begins on a new line with the masked bacteria ID followed by a white tab and then the actual protein sequence.
+## 1. The Data
+
+The protein sequences are in the **data/protein\_sequences.txt** folder of the github. Each sequences begins on a new line with the masked bacteria ID followed by a white tab and then the actual protein sequence.
+
+## 2. Sequence Alignment
 
 1. Align two sequences using the Smith–Waterman algorithm:
 - you can borrow an implementation from online, however,
@@ -274,20 +278,24 @@ In this first project you will combine what you have learned about aligning sequ
 - convert the alignment scores from (1) into a **uniform** similarity measure that can be used to compare all sequences to one another. That is, given the scores you should be able to say, sequence\_i is more similar to sequence\_j than it is to sequence\_k. This may involve some form of normalization of the raw Smith–Waterman scores. Think carefully and explain how you did this in your report
 - given your normalized similarity scores for any pair of sequences, construct the similarity matrix (this is the sequence by sequence matrix that is the input to the clustering in step 3)
 
-3. Use a clustering algorithm of your choice to reconstruct the phylogenic tree:
+## 3. Evolutionary Tree
+
+1. Use a clustering algorithm of your choice to reconstruct the phylogenic tree:
 - plot the tree (the *dendrogram* function of matplotlib may come in handy)
 - what do you notice about the tree, how would you interpret it
 - compare your tree to that of a classmate (discuss your observations in the report)
 
-4. Think about and suggest a way (a metric) to systematically compare the trees reconstructed by the entire class
+2. Think about and suggest a way (a metric) to systematically compare the trees reconstructed by the entire class. Discuss it in your report.
 
+## 4. Write the report
 
-5. Write a brief pdf project report including:
+Write a pdf project report describing your experiments and analyses. Make sure to include:
 - plot of the phylogenic tree with your interpretation and discussion
 - concise description of your proposed metric to assess similarity between reconstructed trees
 - report of the two closets and farthest away proteins (use bacteria id)
 
-6. Turn in the following two files: 
+## 5. Submit
+Turn in the following two files: 
 - FirstName_LastName.pdf containing your report
 - FirstName_LastName.gz which is a gzipped of all your code
 
@@ -297,13 +305,13 @@ via canvas by the *deadline: Friday 18th, 11:59pm*
 
 
 
-# Project 0. Set Up
+# Project 0: Set Up
 
 During the first lab, let's make sure your environment is set up so that you can work without problems on the projects. 
 
-![alt text](fun.png)
+![](/fun.png)
 
-## 1. Anaconda Environment
+## 1. Anaconda
 
 Anaconda is extremely popular open-source distribution designed for data science, machine learning, bioinformatics and scientific computing, that simplifies package management, environment creation, and deployment, making it easier to install and manage libraries and dependencies for various projects. I strongly recommend installing the full version of Anaconda and using it to encapsulate and manage all of your project dependencies, not just for this class but in general. There is no need to install software or libraries directly on you machine potentially causing conflicts and littering your system. Anaconda takes care of it, creating virtual environments which isolate software and their dependencies from the rest of the software installed on your machine. This means you can have both Python 2.9 and Python 3.7 installed within Anaconda and use both versions without encountering issues while your laptop carries its vanilla factory distribution of Python 3.X. You are not required to install Anaconda, but having it will probably make your life easier.
 
@@ -342,7 +350,9 @@ The project report is very important. It should be neatly organized and clearly:
 
 - detail the computational experiments carried with relevant figures
 - justify the specific parametric and algorithmic choices made
+- discuss any potential pitfalls your algorithm faces and measures to avoid them 
 - describe the biological interpretation of your results
+
 
 Don't stress out! I realize you may not be very experienced writing one, I will be fairly lenient in the first half as you learn. Here are some tips:
 
@@ -353,6 +363,8 @@ Don't stress out! I realize you may not be very experienced writing one, I will 
 
 If you use a code from a GitHub of published research, you should include a full reference to the corresponding paper. The GitHub readme page typically contains a citation section that states exactly the name of the paper, the journal, and the year it was published. If you cannot find one then you cannot use it. If in doubt ask me.
 
+**Example report is available [here](example_report.pdf)!**
+
 ## 4. Submitting
 
 For each project, you will upload on canvas two files with the following names: 
@@ -362,5 +374,3 @@ For each project, you will upload on canvas two files with the following names:
 
 
 ## 5. Remember to have fun!
-
-
