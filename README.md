@@ -146,7 +146,7 @@ Finally, to confirm the importance of the graphs structure, randomize the networ
 
 ## 5. Submit
 
-Upload your *COMPLETE* (all parts, all experiments, all results) report, the file with your predicted cancer-driving genes and your *COMPLETE* code via canvas by the *FINAL Deadline: May 28th, 11:59pm*.
+Upload your **COMPLETE** (all parts, all experiments, all results) report, the file with your predicted cancer-driving genes and your **COMPLETE** code via canvas by the *FINAL Deadline: May 28th, 11:59pm*.
 
 
 
