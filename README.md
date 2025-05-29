@@ -1,6 +1,71 @@
 # CSC 448 - Spring 2025
 
 
+&nbsp;
+
+# Project 4: HMMs, Ticks, and Babesia
+
+In this project you will deploy Markov chains to model the trajectory a Babesia parasite cell undertakes as it goes through different states during the parasite life cycle (in each state different sets of genes are active).
+
+![pic](babesia.png)
+
+## 1. Biological Background
+
+Babesiosis, a diseases transmitted trough tick bites that manifests with symptoms such as fever, chills, and fatigue, and that may lead to a death, is caused by a parasite called Babesia. The parasite, itself, has a fascinating life cycle characterized by both asexual and sexual reproduction, occurring in two different hosts: a vertebrate and a tick. In the vertebrate host (i.e a mouse), the cells of the parasite are called sporozoites. They get into the vertebrate bloodstream during the blood meal of an infected tick and enter the erythrocytes (red blood cells) where they undergo asexual reproduction, differentiating into gametocytes. When a new tick ingests these gametocytes, they develop into male and female gametes that merge and undergo sexual reproduction, producing new sporozoites that can be transmitted to a new vertebrate host following subsequent bite by the tick, and so on. In fact, scientist have described several more fine-grained stages of the parasite life cycle (trophozoite, merozoite, oocyst) during which the cells change their shape (become round or elongated), change their membrane properties, express different virulent genes to avoid the immune system of the host, silent genes that are not needed, and so on. How is this extremely intricate and complex life-cycle so precisely regulated is not fully understood although researchers have discovered several transcription factors (proteins encoded by genes in the parasite DNA that bind to the parasite DNA and alter its transcription) that orchestrate the switching between sexual and asexual phases.
+
+## 2. The Data
+
+The data comes from a heavily simplified (to make it a feasible project) datasets from the NCBI (National Center of BioInformatics) and CDC (Center for Disease Control). You are given five different cell states, labeled with $S_1,\ S_2, ... S_5$. You will be tracking the cell state trajectory over 10 time points. The following table summarizes the probability of the cell transitioning from one state (row $i$) to another state (column $j$). Note that it is **not** symmetric.
+
+
+|       | $S_1$ | $S_2$ | $S_3$ | $S_4$ | $S_5$ |
+| :-:   |:----: |:----  | :---  | :--   | :--   |
+| $S_1$ | 0.86 | 0.09 | 0.01 | 0.03 |  0.01 | 
+| $S_2$ | 0.01 | 0.75 | 0.07 | 0.08 | 0.09 | 
+| $S_3$ | 0.01 | 0.02 | 0.74 | 0.21 | 0.02 | 
+| $S_4$ | 0.21 | 0.24 | 0.22 | 0.21 | 0.12 | 
+| $S_5$ | 0.01 | 0.16 | 0.05 | 0.05 | 0.73 | 
+
+
+
+Additionally, for part 4, in the data/ folder you will be given two datasets:
+
+1. **actual gene expression across time points.** In order to gauge the actual state the cell is at each time point, measurements of selected marker gene levels are obtained at each time point. These gene activity levels depend on the state the cell is in and, hence, can be used to inform how likely a cell trajectory over the latent states is given the actually observed measurements. You will find the measurements in data/genemarkers_timepoints.tsv. Each row in the file corresponds to a time point and each column to a marker gene expression level.
+
+2. **expected gene expression at a given state.** In data/genemarkers_states.tsv you will find the expected gene expression levels of a typical cell should have in each of the five states. The real measurements will of course vary but you should be able to reason about the state that most likely emitted the actual measurements.
+
+
+## 3. Basic Markov Chain
+
+First, build a basic Markov model and calculate the probability that the cell ends up in state $S_3$ at the final time point (time point 10) ignoring the measurements in the data/ folder (i.e pretend you don't have any observations yet, so everything is determined by the transitional probabilities from table 1). Note that if done properly you should be able to reuse this code for the next part with a tiny addition.
+
+Assume the cell starts at a special state $S_0$ and there is an equal probability it transitions to any of the other state to kick in the process at time $t=0$. Report the most likely path to $S_3$ in addition to the probability of ending up in state $S_3$. 
+
+## 4. Hidden Markov Model
+
+Now, suppose a researcher provides you the measurements in the data/ folder and asks you to reevaluate your assessment about the probability that the cell ends up in state $S_3$. 
+
+### 4.1 Emit probabilities
+
+Devise an approach that assigns a probability of a particular measurement to have come from a given state, that is calculate a matrix $E$ such that $e_{ij} = Pr(\text{measurement i is emitted from state j}) $. Make sure to discuss in your report why your approach is reasonable.
+
+### 4.2 Viterbi Algorithm
+
+Build upon the basic Markov model from part 3 to create a Hidden Markov Model and implement the Viterbi algorithm. Recalculate the probability that the cell ends up in state $S_3$ at time $t=10$ now that you have gene marker measurements spanning the timeline. Again, make sure to report the most likely path that leads to $S_3$.
+
+## 5. Submit
+
+Turn in the pdf and your code via canvas by the *deadline: June 9th, 11:59pm*.
+
+${\color{red}\large{\text{Note:}}}$ As I need to grade the project and submit final grades for the course to the registrar, the absolute latest you can submit is: ${\color{red}\large{\text{June 11th, 9am.}}}$ 
+
+
+
+&nbsp;
+
+&nbsp;
+
+
 # Project 3: Cancer and Graph Theory
 
 ![pic](rw.png)
