@@ -57,7 +57,7 @@ Build upon the basic Markov model from part 3 to create a Hidden Markov Model an
 
 Turn in the pdf and your code via canvas by the *deadline: June 9th, 11:59pm*.
 
-${\color{red}\large{\text{Note:}}}$ As I need to grade the project and submit final grades for the course to the registrar, the absolute latest you can submit is: ${\color{red}\large{\text{June 11th, 10am.}}}$ 
+As I need to grade the project and submit final grades for the course to the registrar, the absolute latest you can submit is: $${\color{red}\large{\text{June 11th, 10am.}}}$$
 
 
 
